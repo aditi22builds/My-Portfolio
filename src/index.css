@@ -8,11 +8,11 @@
     --text-muted: rgba(255, 255, 255, 0.55);
     --accent-color: #39FF14;
     --accent-glow: rgba(57, 255, 20, 0.45);
-    --glass-bg: rgba(255, 255, 255, 0.08);
-    --glass-border: rgba(255, 255, 255, 0.18);
-    --panel-bg: rgba(0, 0, 0, 0.3);
-    --panel-border: rgba(255, 255, 255, 0.05);
-    --tag-bg: rgba(255, 255, 255, 0.05);
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --panel-bg: rgba(0, 0, 0, 0.35);
+    --panel-border: rgba(255, 255, 255, 0.06);
+    --tag-bg: rgba(255, 255, 255, 0.06);
     --tag-border: rgba(255, 255, 255, 0.1);
     --font-heading: 'Playfair Display', Georgia, serif;
     --font-body: 'Outfit', sans-serif;
@@ -24,9 +24,9 @@
     --bg-transparent: rgba(248, 249, 250, 0);
     --text-primary: #111111;
     --text-muted: rgba(0, 0, 0, 0.65);
-    --accent-color: #009900; /* Darker green for contrast against white */
+    --accent-color: #009900;
     --accent-glow: rgba(0, 153, 0, 0.3);
-    --glass-bg: rgba(255, 255, 255, 0.5); /* Much more opaque for visibility */
+    --glass-bg: rgba(255, 255, 255, 0.5);
     --glass-border: rgba(0, 0, 0, 0.1);
     --panel-bg: rgba(255, 255, 255, 0.6);
     --panel-border: rgba(0, 0, 0, 0.05);
@@ -50,21 +50,36 @@ body {
     font-family: var(--font-body);
     min-height: 100vh;
     position: relative;
-    /* overflow-x: hidden is good to prevent horizontal scroll bars */
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
-/* Custom Scrollbar for a premium feel */
+/* Premium ultra-thin scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
 }
 ::-webkit-scrollbar-track {
-    background: #000000;
+    background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: var(--accent-color);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* Smooth selection color */
+::selection {
+    background: var(--accent-color);
+    color: #000;
 }

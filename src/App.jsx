@@ -10,6 +10,7 @@ import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import Loader from './components/Loader/Loader';
 import ParallaxBackground from './components/ParallaxBackground/ParallaxBackground';
+import Credits from './components/Credits/Credits';
 import './App.css';
 
 const LogoSVG = (
@@ -165,6 +166,7 @@ function App() {
       <ParallaxBackground />
 
       <Cursor />
+      <Credits />
 
       {/* Scrollable Content Container */}
       <div className="scroll-container">

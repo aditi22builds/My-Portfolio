@@ -14,11 +14,11 @@
     top: 0;
     left: 0;
     width: 100vw;
-    height: 30vh;
+    height: 35vh;
     background: linear-gradient(to bottom, var(--bg-color) 0%, var(--bg-transparent) 100%);
     z-index: -1;
     pointer-events: none;
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 #bg-video {
@@ -36,8 +36,8 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(255, 255, 255, 0.75); /* Soft white wash to wash out the dark video */
-    backdrop-filter: blur(4px); /* Add a subtle blur to make the video look softer */
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: 1;
     pointer-events: none;
@@ -59,41 +59,75 @@
 /* The Scrollable content */
 .scroll-container {
     position: relative;
-    z-index: 1; /* Above background, below cursor */
+    z-index: 1;
     display: flex;
     flex-direction: column;
 }
 
-/* Base style for sections as they scroll up */
+/* Base style for sections */
 section {
     position: relative;
-    padding: 6rem 2rem;
+    padding: 7rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-/* Glassmorphism card utility for inner content of sections */
+/* Premium glassmorphism card */
 .glass-panel {
     background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
     border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 3rem;
+    border-radius: 28px;
+    padding: 3.5rem;
     width: 100%;
     max-width: 1100px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: box-shadow 0.4s ease;
 }
 
+.glass-panel:hover {
+    box-shadow:
+        0 12px 48px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .glass-panel {
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Section titles with animated gradient */
 .section-title {
     font-family: var(--font-display);
-    font-size: 2.5rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
     text-align: center;
-    background: linear-gradient(90deg, var(--text-primary), var(--accent-color));
+    background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-color) 100%);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: gradient-shift 6s ease infinite;
+    letter-spacing: -0.02em;
+}
+
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+}
+
+/* Divider utility */
+.section-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+    border: none;
+    margin: 0 auto 2rem;
+    border-radius: 3px;
 }

@@ -20,8 +20,10 @@
 }
 
 .project-card:hover {
-    border-color: rgba(57, 255, 20, 0.4);
+    border-color: var(--accent-color);
     background: var(--glass-bg);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 40px var(--accent-glow);
 }
 
 .project-content h3 {
