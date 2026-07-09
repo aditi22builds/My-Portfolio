@@ -75,10 +75,13 @@ const Hero = ({ theme = 'dark' }) => {
     const contentRef = useRef(null);
     const hasAnimated = useRef(false);
     const [profileBase64, setProfileBase64] = useState('');
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     const frontImageURL = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(getCardSVG(theme, profileBase64))}`;
 
     useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
         // Fetch and encode profile image for the SVG data URI, cropping it perfectly to a square
         fetch(profileImg)
             .then(res => res.blob())
@@ -172,6 +175,7 @@ const Hero = ({ theme = 'dark' }) => {
                 heroElement.removeEventListener('mousemove', handleMouseMove);
                 heroElement.removeEventListener('mouseleave', handleMouseLeave);
             }
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
@@ -194,10 +198,12 @@ const Hero = ({ theme = 'dark' }) => {
                 </main>
 
                 {/* Right Side: Interactive Lanyard */}
-                <aside className="hero-lanyard-container">
-                    {/* position shifts the camera to the left (-1.5), making the card appear on the right side of the screen */}
-                    <Lanyard position={[-1.5, 0, 17]} fov={14} gravity={[0, -40, 0]} frontImage={frontImageURL} lanyardImage={strapImageURL} />
-                </aside>
+                {!isMobile && (
+                    <aside className="hero-lanyard-container">
+                        {/* position shifts the camera to the left (-1.5), making the card appear on the right side of the screen */}
+                        <Lanyard position={[-1.5, 0, 17]} fov={14} gravity={[0, -40, 0]} frontImage={frontImageURL} lanyardImage={strapImageURL} />
+                    </aside>
+                )}
             </div>
         </section>
     );

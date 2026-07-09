@@ -29,6 +29,15 @@
     pointer-events: auto;
 }
 
+@media (max-width: 768px) {
+    .hero-content {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        padding-top: 15vh; /* Push down so lanyard can be above/around */
+    }
+}
+
 .hero-lanyard-container {
     position: absolute;
     top: 0;
@@ -56,9 +65,25 @@
     white-space: nowrap; /* Prevent orphaned words wrapping */
 }
 
+@media (max-width: 768px) {
+    .hero-title {
+        white-space: normal; /* Allow wrapping on small screens */
+        font-size: clamp(2.2rem, 8vw, 3rem);
+    }
+}
+
 .hero-btn-container {
     margin-left: clamp(2rem, 15vw, 12rem);
     display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .hero-btn-container {
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
 }
 
 .hero-btn {

@@ -23,3 +23,9 @@
     color: var(--text-primary);
     font-weight: 600;
 }
+
+@media (max-width: 768px) {
+    .about-text p {
+        font-size: 1.05rem;
+    }
+}
