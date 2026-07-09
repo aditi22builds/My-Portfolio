@@ -1,0 +1,55 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+}
+
+.loader-overlay.exiting {
+    pointer-events: none;
+}
+
+.loader-logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.loader-logo-wrapper svg {
+    overflow: visible;
+}
+
+.loader-name {
+    font-family: var(--font-heading, 'Inter', sans-serif);
+    font-size: 1.2rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0);
+    transition: color 0.5s ease;
+}
+
+.loader-progress-track {
+    width: 120px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-top: 2rem;
+    overflow: hidden;
+}
+
+.loader-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #8A2BE2, #39FF14);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}

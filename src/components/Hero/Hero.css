@@ -1,0 +1,150 @@
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start; /* Changed from center to accommodate footer logic if needed */
+    justify-content: center;
+    z-index: 2;
+}
+
+.hero-split-layout {
+    display: flex;
+    width: 100%;
+    max-width: 1300px;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 50%;
+    transition: transform 0.15s cubic-bezier(0.1, 0.7, 0.3, 1);
+    transform-style: preserve-3d;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.hero-lanyard-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+    pointer-events: none; /* Let clicks pass through to text underneath */
+}
+
+/* We need to re-enable pointer events just for the 3D canvas so you can drag it */
+.hero-lanyard-container > * {
+    pointer-events: auto;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 4vw, 4rem); /* Responsive sizing to prevent awkward wrapping */
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 2.2rem;
+    letter-spacing: -0.015em;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    white-space: nowrap; /* Prevent orphaned words wrapping */
+}
+
+.hero-btn-container {
+    margin-left: clamp(2rem, 15vw, 12rem);
+    display: inline-block;
+}
+
+.hero-btn {
+    font-family: var(--font-body);
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+    background-color: var(--bg-color);
+    border: 1px solid var(--glass-border);
+    padding: 1.3rem 2.5rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+    outline: none;
+    text-decoration: none;
+}
+.hero-btn:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+    border-color: var(--text-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+}
+.hero-btn:active {
+    transform: translateY(0);
+}
+
+.blinking-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    animation: pulse-glow 2s infinite ease-in-out;
+}
+.blinking-dot::after {
+    content: '';
+    position: absolute;
+    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    background-color: var(--accent-glow);
+    border-radius: 50%;
+    animation: wave-expand 2s infinite ease-in-out;
+}
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(0.85);
+        box-shadow: 0 0 4px rgba(57, 255, 20, 0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+        box-shadow: 0 0 12px rgba(57, 255, 20, 0.9);
+    }
+}
+@keyframes wave-expand {
+    0%   { transform: scale(0.6); opacity: 0.9; }
+    100% { transform: scale(2.3); opacity: 0; }
+}
+
+.hero-title .word-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+}
+.hero-title .word-inner {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(105%);
+    filter: blur(20px);
+    animation: word-reveal-mask 1.3s cubic-bezier(0.05, 0.9, 0.1, 1) forwards;
+}
+@keyframes word-reveal-mask {
+    0%   { opacity: 0; transform: translateY(105%); filter: blur(20px); }
+    30%  { opacity: 1; }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+[data-theme="light"] .hero-title {
+    text-shadow: 0 4px 20px rgba(255, 255, 255, 0.6);
+}

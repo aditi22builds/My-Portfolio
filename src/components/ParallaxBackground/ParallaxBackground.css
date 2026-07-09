@@ -1,0 +1,76 @@
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.parallax-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    will-change: transform;
+}
+
+.parallax-orb--1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.6) 0%, transparent 70%);
+    top: 10%;
+    left: -5%;
+}
+
+.parallax-orb--2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(57, 255, 20, 0.5) 0%, transparent 70%);
+    top: 30%;
+    right: -8%;
+}
+
+.parallax-orb--3 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.4) 0%, transparent 70%);
+    top: 55%;
+    left: 20%;
+}
+
+.parallax-orb--4 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(57, 255, 20, 0.45) 0%, transparent 70%);
+    top: 75%;
+    right: 15%;
+}
+
+.parallax-orb--5 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.35) 0%, transparent 70%);
+    top: 90%;
+    left: -10%;
+}
+
+/* Subtle floating animation for ambient feel */
+@keyframes orb-float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(15px, -20px); }
+}
+
+.parallax-orb--1 { animation: orb-float 12s ease-in-out infinite; }
+.parallax-orb--2 { animation: orb-float 15s ease-in-out infinite reverse; }
+.parallax-orb--3 { animation: orb-float 18s ease-in-out infinite; }
+.parallax-orb--4 { animation: orb-float 10s ease-in-out infinite reverse; }
+.parallax-orb--5 { animation: orb-float 14s ease-in-out infinite; }
+
+/* Light theme: make them softer */
+[data-theme="light"] .parallax-orb {
+    opacity: 0.15;
+    filter: blur(100px);
+}
